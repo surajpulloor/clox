@@ -54,7 +54,6 @@ ObjString* copyString(const char* chars, int length)
     ObjString* interned = tableFindString(&vm.strings, chars, length, hash);
 
     if (interned) {
-        FREE_ARRAY(char, chars, length + 1);
         return interned;
     }
 
