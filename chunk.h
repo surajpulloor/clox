@@ -37,7 +37,9 @@ typedef enum {
 
     OP_JUMP_IF_FALSE,
     OP_JUMP,
-    OP_LOOP
+    OP_LOOP,
+
+    OP_CALL
 } OpCode;
 
 typedef struct {
