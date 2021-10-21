@@ -7,6 +7,7 @@
 #include "scanner.h"
 #include "debug.h"
 #include "object.h"
+#include "memory.h"
 
 typedef struct {
     Token current;
@@ -966,4 +967,14 @@ ObjFunction* compile(const char* source)
     ObjFunction* function = endCompiler();
 
     return parser.hadError ? NULL : function;
+}
+
+
+void markCompilerRoots()
+{
+    Compiler* compiler = current;
+    while (compiler) {
+        markObject((Obj*) compiler->function);
+        compiler = compiler->enclosing;
+    }
 }
