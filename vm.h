@@ -32,6 +32,8 @@ typedef struct {
 
     size_t bytesAllocated;
     size_t nextGC;
+
+    ObjString* initString;
 } VM;
 
 typedef enum {
@@ -52,5 +54,8 @@ static bool call_r(ObjClosure* closure, int argCount);
 static bool callValue(Value callee, int argCount);
 static ObjUpValue* captureUpValue(Value* local);
 static void closeUpValues(Value* last);
+static void defineMethod(ObjString* name);
+static bool bindMethod(ObjClass* klass, ObjString* name);
+static bool invoke(ObjString* name, int argCount);
 
 #endif // clox_vm_h
